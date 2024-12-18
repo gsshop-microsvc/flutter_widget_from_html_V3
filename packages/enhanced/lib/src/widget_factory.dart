@@ -11,7 +11,7 @@ import 'package:fwfh_webview/fwfh_webview.dart';
 class WidgetFactory extends core.WidgetFactory
     with
         CachedNetworkImageFactory,
-        ChewieFactory,
+        // ChewieFactory,
         JustAudioFactory,
         SvgFactory,
         UrlLauncherFactory,
