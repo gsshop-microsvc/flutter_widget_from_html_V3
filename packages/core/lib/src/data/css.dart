@@ -217,15 +217,18 @@ class CssBorderSide {
   }
 
   static CssBorderSide? _copyWith(CssBorderSide? base, CssBorderSide? value) {
-    final copied = base == null || value == none
-        ? value
-        : value == null
-            ? base
-            : CssBorderSide(
-                color: value.color ?? base.color,
-                style: value.style ?? base.style,
-                width: value.width ?? base.width,
-              );
+    final CssBorderSide? copied;
+    if (base == null || value == none) {
+      copied = value;
+    } else if (value == null) {
+      copied = base;
+    } else {
+      copied = CssBorderSide(
+        color: value.color ?? base.color,
+        style: value.style ?? base.style,
+        width: value.width ?? base.width,
+      );
+    }
 
     if (copied?.isNoOp == true) {
       return none;
@@ -318,7 +321,6 @@ class CssLength {
 
         value = baseValue * number;
         effectiveScaleFactor = 1;
-        break;
       case CssLengthUnit.percentage:
         if (baseValue == null) {
           return null;
@@ -326,13 +328,10 @@ class CssLength {
 
         value = baseValue * number / 100;
         effectiveScaleFactor = 1;
-        break;
       case CssLengthUnit.pt:
         value = number * 96 / 72;
-        break;
       case CssLengthUnit.px:
         value = number;
-        break;
     }
 
     return value * effectiveScaleFactor;
