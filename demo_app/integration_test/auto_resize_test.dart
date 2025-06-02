@@ -11,7 +11,7 @@ void main() {
   patrolTest('VideoPlayer', ($) async {
     final test = _AspectRatioTest(
       child: VideoPlayer(
-        'https://files.daohoangson.com/public/fwfh/flower.mp4',
+        'https://flutter-widget-from-html.github.io/pages/flower.mp4',
         aspectRatio: 1,
         loadingBuilder: (_, __, ___) =>
             const Center(child: CircularProgressIndicator()),
@@ -24,10 +24,10 @@ void main() {
   });
 
   final webViewTestCases = ValueVariant(const {
-    WebViewTestCase(0.5, false),
-    WebViewTestCase(1.0, false),
-    WebViewTestCase(2.0, false),
-    WebViewTestCase(1.0, true),
+    WebViewTestCase(input: 0.5, issue375: false),
+    WebViewTestCase(input: 1.0, issue375: false),
+    WebViewTestCase(input: 2.0, issue375: false),
+    WebViewTestCase(input: 1.0, issue375: true),
   });
 
   patrolTest(
@@ -64,8 +64,10 @@ class WebViewTestCase {
   final double input;
   final bool issue375;
 
-  // ignore: avoid_positional_boolean_parameters
-  const WebViewTestCase(this.input, this.issue375);
+  const WebViewTestCase({
+    required this.input,
+    required this.issue375,
+  });
 
   Future<_AspectRatioTest> run(PatrolIntegrationTester $) async {
     final html = '''
